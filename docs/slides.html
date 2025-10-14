@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación ARyS-U7</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-markdown id="markdown-content">
+                <textarea data-template>
+                    # Cargando presentación...
+                </textarea>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/zoom/zoom.js"></script>
+    <script>
+        // Get markdown file from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const mdFile = urlParams.get('md');
+
+        if (mdFile) {
+            // Fetch and load the markdown file
+            fetch(mdFile)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el archivo: ' + mdFile);
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    // Replace the content
+                    const section = document.querySelector('#markdown-content textarea');
+                    section.textContent = markdown;
+                    
+                    // Initialize Reveal.js
+                    Reveal.initialize({
+                        hash: true,
+                        controls: true,
+                        progress: true,
+                        center: true,
+                        transition: 'slide',
+                        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+                    });
+                })
+                .catch(error => {
+                    const section = document.querySelector('#markdown-content textarea');
+                    section.textContent = `
+# Error
+## No se pudo cargar la presentación
+
+${error.message}
+
+[Volver al índice](index.html)
+                    `;
+                    Reveal.initialize({
+                        hash: true,
+                        plugins: [ RevealMarkdown ]
+                    });
+                });
+        } else {
+            const section = document.querySelector('#markdown-content textarea');
+            section.textContent = `
+# ARyS-U7
+## Servicios AAA
+
+Por favor, selecciona una presentación desde el [índice](index.html)
+            `;
+            Reveal.initialize({
+                hash: true,
+                plugins: [ RevealMarkdown ]
+            });
+        }
+    </script>
+</body>
+</html>
