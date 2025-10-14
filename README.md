@@ -28,23 +28,32 @@ Accede a todo el contenido desde la web:
 
 ```
 ARyS-U7/
-├── filminas/           # Presentaciones en formato Markdown para Reveal.js
+├── filminas/                      # Presentaciones en formato Markdown para Reveal.js
 │   ├── introduccion-aaa.md
 │   ├── protocolos-aaa.md
-│   └── implementacion-aaa.md
-├── teoria/             # Material teórico en Markdown
-│   └── 01-introduccion-aaa.md
-├── practicos/          # Guías de laboratorio
-│   └── laboratorio-01.md
-├── wiki/               # Contenido para GitHub Wiki
+│   ├── implementacion-aaa.md
+│   └── unidad-7-completa.md       # Presentación completa de la unidad
+├── teoria/                        # Material teórico en Markdown
+│   ├── 01-introduccion-aaa.md
+│   └── 02-servicios-autenticacion.md  # LDAP, Kerberos, OAuth, OIDC, RBAC/ABAC
+├── practicos/                     # Guías de laboratorio
+│   ├── laboratorio-01.md          # FreeRADIUS básico
+│   ├── laboratorio-02-ldap-kerberos.md    # LDAP y Kerberos
+│   ├── laboratorio-03-oauth-keycloak.md   # OAuth 2.0 y OIDC
+│   └── laboratorio-04-rbac.md     # Control de acceso basado en roles
+├── wiki/                          # Contenido para GitHub Wiki
 │   ├── Home.md
-│   └── Introduccion-AAA.md
-├── docs/               # Sitio web (GitHub Pages)
-│   ├── index.html      # Portal principal
-│   ├── slides.html     # Visor de presentaciones
-│   ├── wiki.html       # Wiki integrada
-│   └── practicos.html  # Listado de trabajos prácticos
-└── README.md           # Este archivo
+│   ├── Introduccion-AAA.md
+│   ├── Servicios-Autenticacion.md  # LDAP, RADIUS, AD, Kerberos
+│   ├── OAuth-OIDC.md               # OAuth 2.0, OpenID Connect, JWT
+│   └── Control-Acceso.md           # ACL, RBAC, ABAC
+├── docs/                          # Sitio web (GitHub Pages)
+│   ├── index.html                 # Portal principal
+│   ├── slides.html                # Visor de presentaciones
+│   ├── wiki.html                  # Wiki integrada
+│   ├── practicos.html             # Listado de trabajos prácticos
+│   └── filminas/                  # Copias de presentaciones para web
+└── README.md                      # Este archivo
 ```
 
 ## 🚀 Características
@@ -65,9 +74,10 @@ ARyS-U7/
 - Formato profesional
 
 ### 🧪 Laboratorios Prácticos
-- 6 laboratorios completos
+- 10+ laboratorios completos
 - Dificultad progresiva (básico → avanzado)
 - Instrucciones paso a paso
+- Nuevos labs: LDAP/Kerberos, OAuth/OIDC con Keycloak, RBAC
 - Ejercicios y evaluación
 
 ## 🎯 Temario
@@ -78,32 +88,58 @@ ARyS-U7/
 - Arquitectura y componentes
 - Casos de uso
 
-### Módulo 2: Protocolos AAA
+### Módulo 2: Servicios de Autenticación y Directorios
+- **LDAP**: Lightweight Directory Access Protocol
+- **RADIUS**: Remote Authentication Dial-In User Service
+- **Active Directory**: Gestión de identidades Microsoft
+- **Kerberos**: Autenticación basada en tickets
+
+### Módulo 3: Autenticación Moderna
+- **OAuth 2.0**: Framework de autorización
+- **OpenID Connect (OIDC)**: Autenticación sobre OAuth
+- **JWT**: JSON Web Tokens
+- **Single Sign-On (SSO)** y federación
+- Identity Providers: Keycloak, Auth0, Azure AD
+
+### Módulo 4: Control de Acceso
+- **ACL**: Access Control Lists
+- **RBAC**: Role-Based Access Control
+- **ABAC**: Attribute-Based Access Control
+- Motores de políticas: OPA, Cedar
+
+### Módulo 5: Protocolos AAA Tradicionales
 - RADIUS: Características y uso
 - TACACS+: Control de dispositivos
 - Diameter: Redes modernas
 - Comparación de protocolos
 
-### Módulo 3: Implementación
+### Módulo 6: Implementación Práctica
 - Instalación de FreeRADIUS
-- Configuración básica
+- OpenLDAP y directorios
+- Keycloak como IdP
 - Integración con LDAP/AD
 - WiFi 802.1X
 - VPN con AAA
 
-### Módulo 4: Casos Prácticos
+### Módulo 7: Casos Prácticos y Laboratorios
 - WiFi empresarial
 - Administración de dispositivos
 - Network Access Control (NAC)
+- OAuth 2.0 / OIDC flows
+- Control de acceso basado en roles
 - Alta disponibilidad
 
 ## 🛠️ Tecnologías Utilizadas
 
-- **Reveal.js**: Presentaciones HTML
+- **Reveal.js**: Presentaciones HTML interactivas
 - **Markdown**: Contenido y documentación
 - **GitHub Pages**: Hosting del sitio
 - **HTML/CSS/JavaScript**: Portal web
-- **FreeRADIUS**: Laboratorios prácticos
+- **FreeRADIUS**: Servidor RADIUS open source
+- **OpenLDAP**: Servicio de directorio
+- **Keycloak**: Identity Provider y gestión de acceso
+- **Docker**: Contenedores para labs
+- **Node.js/Express**: APIs de ejemplo para RBAC
 
 ## 📝 Cómo Usar Este Material
 
