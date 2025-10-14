@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajos Prácticos - ARyS-U7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: #f6f8fa;
+            color: #24292e;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 15px;
+        }
+        .intro {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #0366d6;
+        }
+        .lab {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .lab h2 {
+            color: #0366d6;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .lab-number {
+            background: #0366d6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .lab h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #24292e;
+        }
+        .lab ul, .lab ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        .lab li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        .lab p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .lab code {
+            background: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .lab pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .lab pre code {
+            padding: 0;
+            background: none;
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .difficulty.basico {
+            background: #d4edda;
+            color: #155724;
+        }
+        .difficulty.intermedio {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .difficulty.avanzado {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .time {
+            display: inline-block;
+            color: #666;
+            font-size: 14px;
+        }
+        .note {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Volver al índice</a>
+        
+        <h1>💻 Trabajos Prácticos</h1>
+        
+        <div class="intro">
+            <p><strong>Objetivo:</strong> Implementar y configurar servicios AAA en entornos reales y virtualizados.</p>
+            <p>Cada laboratorio está diseñado para reforzar los conceptos teóricos mediante práctica hands-on.</p>
+        </div>
+
+        <div class="lab">
+            <h2>
+                <span class="lab-number">1</span>
+                Instalación y Configuración Básica de FreeRADIUS
+            </h2>
+            <div>
+                <span class="difficulty basico">Básico</span>
+                <span class="time">⏱️ 60 minutos</span>
+            </div>
+            
+            <h3>Objetivo</h3>
+            <p>Instalar FreeRADIUS y configurar autenticación básica con usuarios locales.</p>
+            
+            <h3>Requisitos</h3>
+            <ul>
+                <li>Máquina virtual con Ubuntu/Debian o CentOS/RHEL</li>
+                <li>Acceso root o sudo</li>
+                <li>Conexión a internet</li>
+            </ul>
+            
+            <h3>Tareas</h3>
+            <ol>
+                <li>Instalar FreeRADIUS y utilidades</li>
+                <li>Configurar usuarios en el archivo <code>users</code></li>
+                <li>Configurar un cliente RADIUS de prueba</li>
+                <li>Iniciar FreeRADIUS en modo debug</li>
+                <li>Probar autenticación con <code>radtest</code></li>
+                <li>Revisar logs y entender el flujo</li>
+            </ol>
+            
+            <h3>Comandos Útiles</h3>
+            <pre><code># Instalación en Ubuntu/Debian
+sudo apt update
+sudo apt install freeradius freeradius-utils
+
+# Editar usuarios
+sudo nano /etc/freeradius/3.0/users
+
+# Ejecutar en modo debug
+sudo freeradius -X
+
+# Probar autenticación (en otra terminal)
+radtest testuser testpass localhost 0 testing123</code></pre>
+            
+            <h3>Entregables</h3>
+            <ul>
+                <li>Capturas de pantalla del servidor en modo debug</li>
+                <li>Evidencia de autenticación exitosa</li>
+                <li>Explicación del flujo de autenticación observado</li>
+            </ul>
+        </div>
+
+        <div class="lab">
+            <h2>
+                <span class="lab-number">2</span>
+                Integración con LDAP/Active Directory
+            </h2>
+            <div>
+                <span class="difficulty intermedio">Intermedio</span>
+                <span class="time">⏱️ 90 minutos</span>
+            </div>
+            
+            <h3>Objetivo</h3>
+            <p>Configurar FreeRADIUS para autenticar usuarios desde un servidor LDAP o Active Directory.</p>
+            
+            <h3>Requisitos</h3>
+            <ul>
+                <li>Servidor FreeRADIUS funcionando (Lab 1)</li>
+                <li>Servidor LDAP o Active Directory disponible</li>
+                <li>Credenciales de cuenta de servicio en LDAP/AD</li>
+            </ul>
+            
+            <h3>Tareas</h3>
+            <ol>
+                <li>Habilitar el módulo LDAP en FreeRADIUS</li>
+                <li>Configurar conexión al servidor LDAP/AD</li>
+                <li>Configurar filtros de búsqueda de usuarios</li>
+                <li>Probar autenticación con usuarios del directorio</li>
+                <li>Implementar atributos adicionales (grupos, permisos)</li>
+            </ol>
+            
+            <h3>Configuración Ejemplo</h3>
+            <pre><code># /etc/freeradius/3.0/mods-enabled/ldap
+ldap {
+    server = "ldap.ejemplo.com"
+    port = 389
+    identity = "cn=radiusadmin,dc=ejemplo,dc=com"
+    password = "password_seguro"
+    base_dn = "ou=usuarios,dc=ejemplo,dc=com"
+    
+    user {
+        filter = "(uid=%{%{User-Name}})"
+    }
+}</code></pre>
+            
+            <div class="note">
+                <strong>Tip:</strong> Si no tienes un servidor LDAP, puedes instalar OpenLDAP localmente o usar un contenedor Docker.
+            </div>
+            
+            <h3>Entregables</h3>
+            <ul>
+                <li>Configuración completa del módulo LDAP</li>
+                <li>Evidencia de autenticación exitosa con usuarios de LDAP</li>
+                <li>Análisis de atributos retornados por LDAP</li>
+            </ul>
+        </div>
+
+        <div class="lab">
+            <h2>
+                <span class="lab-number">3</span>
+                Configuración de WiFi 802.1X
+            </h2>
+            <div>
+                <span class="difficulty intermedio">Intermedio</span>
+                <span class="time">⏱️ 120 minutos</span>
+            </div>
+            
+            <h3>Objetivo</h3>
+            <p>Implementar autenticación 802.1X en una red WiFi usando FreeRADIUS.</p>
+            
+            <h3>Requisitos</h3>
+            <ul>
+                <li>Servidor FreeRADIUS funcionando</li>
+                <li>Access Point con soporte 802.1X (o emulado con hostapd)</li>
+                <li>Cliente WiFi para pruebas</li>
+                <li>Certificados SSL/TLS</li>
+            </ul>
+            
+            <h3>Tareas</h3>
+            <ol>
+                <li>Configurar módulo EAP en FreeRADIUS</li>
+                <li>Generar certificados SSL para el servidor</li>
+                <li>Configurar AP como cliente RADIUS</li>
+                <li>Configurar SSID con WPA2-Enterprise</li>
+                <li>Configurar cliente WiFi para EAP-PEAP o EAP-TLS</li>
+                <li>Probar conectividad y analizar logs</li>
+            </ol>
+            
+            <h3>Configuración AP (Ejemplo)</h3>
+            <pre><code># Configuración típica en AP
+SSID: CorporativoSeguro
+Seguridad: WPA2-Enterprise
+Servidor RADIUS 1: 192.168.1.100
+Puerto RADIUS: 1812
+Secreto Compartido: mi_secreto_seguro</code></pre>
+            
+            <h3>Configuración Cliente</h3>
+            <pre><code># En el cliente (wpa_supplicant o GUI):
+Método de autenticación: PEAP
+Autenticación interna: MSCHAPv2
+Usuario: testuser
+Contraseña: password
+Validar certificado del servidor: Sí</code></pre>
+            
+            <div class="warning">
+                <strong>Importante:</strong> Asegúrate de que el certificado del servidor sea confiable en el cliente, o desactiva temporalmente la validación solo para pruebas.
+            </div>
+            
+            <h3>Entregables</h3>
+            <ul>
+                <li>Configuración completa del módulo EAP</li>
+                <li>Configuración del AP y cliente</li>
+                <li>Capturas de conexión exitosa</li>
+                <li>Logs de FreeRADIUS mostrando el handshake 802.1X</li>
+            </ul>
+        </div>
+
+        <div class="lab">
+            <h2>
+                <span class="lab-number">4</span>
+                Contabilidad (Accounting) y Auditoría
+            </h2>
+            <div>
+                <span class="difficulty basico">Básico</span>
+                <span class="time">⏱️ 60 minutos</span>
+            </div>
+            
+            <h3>Objetivo</h3>
+            <p>Configurar y analizar la contabilidad de sesiones en FreeRADIUS.</p>
+            
+            <h3>Requisitos</h3>
+            <ul>
+                <li>Servidor FreeRADIUS funcionando</li>
+                <li>Cliente RADIUS configurado</li>
+            </ul>
+            
+            <h3>Tareas</h3>
+            <ol>
+                <li>Habilitar accounting en FreeRADIUS</li>
+                <li>Configurar almacenamiento de logs (archivos o SQL)</li>
+                <li>Simular sesiones de usuario</li>
+                <li>Analizar registros de accounting</li>
+                <li>Generar reportes básicos de uso</li>
+            </ol>
+            
+            <h3>Información Registrada</h3>
+            <pre><code>- Accounting-Start: Inicio de sesión
+- Accounting-Stop: Fin de sesión
+- Duración de la sesión
+- Bytes enviados/recibidos
+- Razón de terminación</code></pre>
+            
+            <h3>Análisis de Logs</h3>
+            <pre><code># Ver logs de accounting
+tail -f /var/log/freeradius/radacct/*/detail
+
+# Buscar sesiones de un usuario específico
+grep "testuser" /var/log/freeradius/radacct/*/detail</code></pre>
+            
+            <h3>Entregables</h3>
+            <ul>
+                <li>Configuración de accounting</li>
+                <li>Logs de sesiones completas (Start y Stop)</li>
+                <li>Reporte con métricas: duración promedio, datos transferidos, etc.</li>
+            </ul>
+        </div>
+
+        <div class="lab">
+            <h2>
+                <span class="lab-number">5</span>
+                TACACS+ para Administración de Dispositivos
+            </h2>
+            <div>
+                <span class="difficulty avanzado">Avanzado</span>
+                <span class="time">⏱️ 120 minutos</span>
+            </div>
+            
+            <h3>Objetivo</h3>
+            <p>Implementar TACACS+ para controlar el acceso administrativo a dispositivos de red.</p>
+            
+            <h3>Requisitos</h3>
+            <ul>
+                <li>Servidor Linux para tac_plus</li>
+                <li>Router/Switch Cisco (real o emulado con GNS3/EVE-NG)</li>
+                <li>Conocimientos básicos de IOS/IOS-XE</li>
+            </ul>
+            
+            <h3>Tareas</h3>
+            <ol>
+                <li>Instalar tac_plus en servidor Linux</li>
+                <li>Configurar usuarios con diferentes niveles de privilegio</li>
+                <li>Configurar router/switch para usar TACACS+</li>
+                <li>Probar acceso con diferentes usuarios</li>
+                <li>Configurar autorización por comando</li>
+                <li>Analizar logs de accounting de comandos</li>
+            </ol>
+            
+            <h3>Configuración tac_plus</h3>
+            <pre><code># /etc/tacacs+/tac_plus.conf
+key = MiSecretoTACACS
+
+user = admin {
+    login = des mEYHx9k9QXUJk
+    service = shell {
+        priv-lvl = 15
+    }
+}
+
+user = operador {
+    login = des mEYHx9k9QXUJk
+    service = shell {
+        priv-lvl = 1
+    }
+}</code></pre>
+            
+            <h3>Configuración Cisco IOS</h3>
+            <pre><code>! Habilitar AAA
+aaa new-model
+
+! Configurar servidor TACACS+
+tacacs-server host 192.168.1.100 key MiSecretoTACACS
+
+! Configurar autenticación
+aaa authentication login default group tacacs+ local
+aaa authorization exec default group tacacs+ local
+aaa accounting exec default start-stop group tacacs+
+aaa accounting commands 15 default start-stop group tacacs+</code></pre>
+            
+            <div class="note">
+                <strong>Nota:</strong> Si no tienes equipos Cisco físicos, puedes usar emuladores como GNS3 con imágenes de Cisco IOS o usar Cisco Packet Tracer.
+            </div>
+            
+            <h3>Entregables</h3>
+            <ul>
+                <li>Configuración completa de tac_plus</li>
+                <li>Configuración del dispositivo de red</li>
+                <li>Evidencia de acceso con diferentes usuarios</li>
+                <li>Logs mostrando autorización de comandos</li>
+                <li>Análisis de auditoría de comandos ejecutados</li>
+            </ul>
+        </div>
+
+        <div class="lab">
+            <h2>
+                <span class="lab-number">6</span>
+                Alta Disponibilidad y Redundancia
+            </h2>
+            <div>
+                <span class="difficulty avanzado">Avanzado</span>
+                <span class="time">⏱️ 90 minutos</span>
+            </div>
+            
+            <h3>Objetivo</h3>
+            <p>Implementar una arquitectura de alta disponibilidad para servicios AAA.</p>
+            
+            <h3>Requisitos</h3>
+            <ul>
+                <li>Dos o más servidores FreeRADIUS</li>
+                <li>Cliente RADIUS (NAS o AP)</li>
+                <li>Herramientas de sincronización (rsync o replicación de BD)</li>
+            </ul>
+            
+            <h3>Tareas</h3>
+            <ol>
+                <li>Configurar dos servidores FreeRADIUS idénticos</li>
+                <li>Sincronizar configuraciones entre servidores</li>
+                <li>Configurar cliente con servidor primario y secundario</li>
+                <li>Probar failover (apagar primario)</li>
+                <li>Probar failback (recuperar primario)</li>
+                <li>Implementar monitoreo de ambos servidores</li>
+            </ol>
+            
+            <h3>Configuración Cliente (Múltiples Servidores)</h3>
+            <pre><code># En el NAS/AP:
+Primary RADIUS Server: 192.168.1.100
+Primary Port: 1812
+Primary Secret: secreto1
+
+Secondary RADIUS Server: 192.168.1.101
+Secondary Port: 1812
+Secondary Secret: secreto1
+
+Timeout: 5 segundos
+Retries: 3</code></pre>
+            
+            <h3>Sincronización de Configuración</h3>
+            <pre><code>#!/bin/bash
+# Script de sincronización
+rsync -avz /etc/freeradius/ usuario@servidor2:/etc/freeradius/
+ssh usuario@servidor2 "systemctl restart freeradius"</code></pre>
+            
+            <h3>Entregables</h3>
+            <ul>
+                <li>Arquitectura de la solución (diagrama)</li>
+                <li>Configuración de ambos servidores</li>
+                <li>Script de sincronización</li>
+                <li>Evidencia de failover funcionando</li>
+                <li>Métricas de disponibilidad durante pruebas</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 50px; padding: 30px; background: white; border-radius: 8px; border-left: 4px solid #28a745;">
+            <h2>📋 Evaluación</h2>
+            <p>Los trabajos prácticos serán evaluados según los siguientes criterios:</p>
+            <ul>
+                <li><strong>Funcionalidad (40%):</strong> El sistema funciona correctamente según los requisitos</li>
+                <li><strong>Documentación (30%):</strong> Claridad y completitud de la documentación entregada</li>
+                <li><strong>Comprensión (20%):</strong> Análisis y explicaciones demuestran comprensión de los conceptos</li>
+                <li><strong>Mejoras (10%):</strong> Implementación de funcionalidades adicionales o mejoras de seguridad</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="index.html" class="back-link" style="font-size: 18px;">← Volver al índice principal</a>
+        </div>
+    </div>
+</body>
+</html>

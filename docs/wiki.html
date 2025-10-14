@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - ARyS-U7</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: #f6f8fa;
+            color: #24292e;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid #e1e4e8;
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed;
+            height: 100vh;
+        }
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #0366d6;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar li {
+            margin: 8px 0;
+        }
+        .sidebar a {
+            color: #0366d6;
+            text-decoration: none;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+        .sidebar a:hover {
+            background: #f6f8fa;
+        }
+        .sidebar a.active {
+            background: #0366d6;
+            color: white;
+        }
+        .content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1000px;
+        }
+        .content h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 10px;
+        }
+        .content h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .content h3 {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .content ul, .content ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        .content li {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+        .content code {
+            background: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .content pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+        .content pre code {
+            padding: 0;
+            background: none;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #e1e4e8;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #f6f8fa;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>📚 Contenido Teórico</h2>
+            <ul>
+                <li><a href="#intro" class="nav-link active">Introducción</a></li>
+                <li><a href="#autenticacion" class="nav-link">Autenticación</a></li>
+                <li><a href="#autorizacion" class="nav-link">Autorización</a></li>
+                <li><a href="#auditoria" class="nav-link">Auditoría</a></li>
+                <li><a href="#protocolos" class="nav-link">Protocolos AAA</a></li>
+                <li><a href="#radius" class="nav-link">RADIUS</a></li>
+                <li><a href="#tacacs" class="nav-link">TACACS+</a></li>
+                <li><a href="#diameter" class="nav-link">Diameter</a></li>
+                <li><a href="#implementacion" class="nav-link">Implementación</a></li>
+                <li><a href="#seguridad" class="nav-link">Seguridad</a></li>
+                <li><a href="#casos" class="nav-link">Casos de Uso</a></li>
+            </ul>
+        </nav>
+        
+        <main class="content" id="content">
+            <a href="index.html" class="back-link">← Volver al índice</a>
+            
+            <section id="intro">
+                <h1>🔐 Servicios AAA</h1>
+                <p><strong>Autenticación, Autorización y Auditoría (AAA)</strong> es un framework fundamental en seguridad de redes que proporciona un mecanismo centralizado para controlar el acceso a recursos de red y auditar las actividades de los usuarios.</p>
+                
+                <h2>¿Por qué AAA?</h2>
+                <p>En entornos empresariales modernos, es esencial tener un control centralizado sobre:</p>
+                <ul>
+                    <li>Quién puede acceder a la red</li>
+                    <li>Qué recursos puede utilizar</li>
+                    <li>Qué acciones realiza</li>
+                </ul>
+                
+                <div class="info">
+                    <strong>Nota:</strong> AAA no es un protocolo en sí mismo, sino un framework conceptual que puede implementarse mediante varios protocolos como RADIUS, TACACS+, y Diameter.
+                </div>
+            </section>
+
+            <section id="autenticacion">
+                <h2>Autenticación (Authentication)</h2>
+                <p>La autenticación es el proceso de verificar la identidad de un usuario, dispositivo o entidad que solicita acceso a un sistema o recurso.</p>
+                
+                <h3>Factores de Autenticación</h3>
+                <ol>
+                    <li><strong>Algo que sabes:</strong> Contraseñas, PIN, respuestas a preguntas secretas</li>
+                    <li><strong>Algo que tienes:</strong> Tokens, tarjetas inteligentes, certificados digitales</li>
+                    <li><strong>Algo que eres:</strong> Biometría (huella dactilar, reconocimiento facial, iris)</li>
+                    <li><strong>Algo que haces:</strong> Patrones de comportamiento, firma</li>
+                    <li><strong>Dónde estás:</strong> Geolocalización, dirección IP</li>
+                </ol>
+                
+                <h3>Autenticación Multifactor (MFA)</h3>
+                <p>La autenticación multifactor combina dos o más factores de autenticación diferentes para proporcionar una capa adicional de seguridad.</p>
+                
+                <pre><code>Ejemplo de flujo MFA:
+1. Usuario ingresa contraseña (factor 1: algo que sabe)
+2. Sistema envía código a dispositivo móvil
+3. Usuario ingresa código (factor 2: algo que tiene)</code></pre>
+            </section>
+
+            <section id="autorizacion">
+                <h2>Autorización (Authorization)</h2>
+                <p>La autorización determina qué recursos y acciones están permitidos para un usuario autenticado.</p>
+                
+                <h3>Modelos de Control de Acceso</h3>
+                
+                <h4>DAC (Discretionary Access Control)</h4>
+                <p>El propietario del recurso determina quién puede acceder. Común en sistemas de archivos (permisos de UNIX).</p>
+                
+                <h4>MAC (Mandatory Access Control)</h4>
+                <p>Las políticas de seguridad del sistema determinan el acceso basado en etiquetas de clasificación.</p>
+                
+                <h4>RBAC (Role-Based Access Control)</h4>
+                <p>Los permisos se asignan a roles, y los usuarios se asignan a roles.</p>
+                <pre><code>Ejemplo RBAC:
+- Rol: Administrador → Permisos: Lectura, Escritura, Eliminación
+- Rol: Usuario → Permisos: Lectura
+- Rol: Invitado → Permisos: Lectura limitada</code></pre>
+                
+                <h4>ABAC (Attribute-Based Access Control)</h4>
+                <p>Las decisiones de acceso se basan en atributos del usuario, recurso y contexto.</p>
+            </section>
+
+            <section id="auditoria">
+                <h2>Auditoría (Accounting/Audit)</h2>
+                <p>La auditoría registra y monitorea las actividades de los usuarios para propósitos de seguridad, cumplimiento y facturación.</p>
+                
+                <h3>Información Capturada</h3>
+                <ul>
+                    <li>Identidad del usuario</li>
+                    <li>Fecha y hora de acceso</li>
+                    <li>Recursos accedidos</li>
+                    <li>Acciones realizadas</li>
+                    <li>Duración de la sesión</li>
+                    <li>Cantidad de datos transferidos</li>
+                    <li>Resultado de las operaciones</li>
+                </ul>
+                
+                <h3>Usos de la Auditoría</h3>
+                <table>
+                    <tr>
+                        <th>Propósito</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>Facturación</td>
+                        <td>Cobro basado en uso de recursos (ISP, servicios cloud)</td>
+                    </tr>
+                    <tr>
+                        <td>Análisis de Seguridad</td>
+                        <td>Detección de actividades sospechosas o no autorizadas</td>
+                    </tr>
+                    <tr>
+                        <td>Cumplimiento</td>
+                        <td>Demostrar adherencia a regulaciones (GDPR, HIPAA, SOX)</td>
+                    </tr>
+                    <tr>
+                        <td>Capacidad de Planificación</td>
+                        <td>Análisis de uso para dimensionar recursos</td>
+                    </tr>
+                    <tr>
+                        <td>Troubleshooting</td>
+                        <td>Diagnóstico de problemas de red y aplicaciones</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="protocolos">
+                <h2>Protocolos AAA</h2>
+                <p>Existen varios protocolos que implementan el framework AAA, cada uno con características y casos de uso específicos.</p>
+                
+                <h3>Comparación de Protocolos</h3>
+                <table>
+                    <tr>
+                        <th>Característica</th>
+                        <th>RADIUS</th>
+                        <th>TACACS+</th>
+                        <th>Diameter</th>
+                    </tr>
+                    <tr>
+                        <td>RFC</td>
+                        <td>2865, 2866</td>
+                        <td>Propietario (draft)</td>
+                        <td>6733</td>
+                    </tr>
+                    <tr>
+                        <td>Transporte</td>
+                        <td>UDP</td>
+                        <td>TCP</td>
+                        <td>TCP/SCTP</td>
+                    </tr>
+                    <tr>
+                        <td>Puerto</td>
+                        <td>1812, 1813</td>
+                        <td>49</td>
+                        <td>3868</td>
+                    </tr>
+                    <tr>
+                        <td>Cifrado</td>
+                        <td>Solo contraseña</td>
+                        <td>Payload completo</td>
+                        <td>IPSec/TLS</td>
+                    </tr>
+                    <tr>
+                        <td>Separación AAA</td>
+                        <td>No</td>
+                        <td>Sí</td>
+                        <td>Sí</td>
+                    </tr>
+                    <tr>
+                        <td>Uso Principal</td>
+                        <td>ISP, WiFi, VPN</td>
+                        <td>Admin dispositivos</td>
+                        <td>Redes móviles</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="radius">
+                <h2>RADIUS (Remote Authentication Dial-In User Service)</h2>
+                <p>RADIUS es el protocolo AAA más ampliamente utilizado, especialmente en entornos ISP y redes inalámbricas.</p>
+                
+                <h3>Características Principales</h3>
+                <ul>
+                    <li>Protocolo cliente-servidor</li>
+                    <li>Utiliza UDP para transporte (ligero y rápido)</li>
+                    <li>Combina autenticación y autorización en una sola fase</li>
+                    <li>Soporta múltiples métodos de autenticación (PAP, CHAP, EAP)</li>
+                    <li>Amplio soporte de fabricantes</li>
+                </ul>
+                
+                <h3>Tipos de Paquetes RADIUS</h3>
+                <pre><code>Autenticación:
+- Access-Request: Cliente solicita acceso
+- Access-Accept: Servidor concede acceso
+- Access-Reject: Servidor niega acceso
+- Access-Challenge: Servidor solicita información adicional
+
+Contabilidad:
+- Accounting-Request: Cliente envía información de contabilidad
+- Accounting-Response: Servidor confirma recepción</code></pre>
+                
+                <h3>Atributos RADIUS Comunes</h3>
+                <ul>
+                    <li><code>User-Name</code>: Nombre del usuario</li>
+                    <li><code>User-Password</code>: Contraseña (cifrada con MD5)</li>
+                    <li><code>NAS-IP-Address</code>: IP del cliente RADIUS</li>
+                    <li><code>Service-Type</code>: Tipo de servicio solicitado</li>
+                    <li><code>Framed-IP-Address</code>: IP asignada al usuario</li>
+                    <li><code>Session-Timeout</code>: Duración máxima de sesión</li>
+                    <li><code>Idle-Timeout</code>: Tiempo máximo de inactividad</li>
+                </ul>
+                
+                <div class="warning">
+                    <strong>Limitación de Seguridad:</strong> En RADIUS estándar, solo la contraseña se cifra. El resto del payload viaja en texto claro. Para mayor seguridad, se recomienda usar IPSec o RADIUS over TLS (RadSec).
+                </div>
+            </section>
+
+            <section id="tacacs">
+                <h2>TACACS+ (Terminal Access Controller Access Control System Plus)</h2>
+                <p>TACACS+ es un protocolo AAA desarrollado por Cisco, diseñado principalmente para la administración de dispositivos de red.</p>
+                
+                <h3>Ventajas sobre RADIUS</h3>
+                <ul>
+                    <li><strong>Cifrado completo:</strong> Todo el payload se cifra, no solo la contraseña</li>
+                    <li><strong>Separación de AAA:</strong> Autenticación, autorización y contabilidad son independientes</li>
+                    <li><strong>Control granular:</strong> Puede autorizar comandos específicos en dispositivos</li>
+                    <li><strong>TCP:</strong> Mayor fiabilidad que UDP</li>
+                </ul>
+                
+                <h3>Casos de Uso Típicos</h3>
+                <pre><code>1. Control de acceso administrativo a routers/switches
+2. Autorización de comandos específicos por usuario
+3. Auditoría detallada de comandos ejecutados
+4. Separación de privilegios según roles</code></pre>
+                
+                <h3>Ejemplo de Autorización por Comando</h3>
+                <pre><code># Usuario "operador" puede ejecutar:
+show running-config
+show ip interface brief
+ping
+
+# Pero NO puede ejecutar:
+configure terminal
+write memory
+reload</code></pre>
+                
+                <div class="info">
+                    <strong>Nota:</strong> Aunque TACACS+ es propietario de Cisco, existen implementaciones open source como tac_plus que funcionan con equipos de múltiples fabricantes.
+                </div>
+            </section>
+
+            <section id="diameter">
+                <h2>Diameter</h2>
+                <p>Diameter es el sucesor moderno de RADIUS, diseñado para superar sus limitaciones y soportar requisitos de redes móviles modernas.</p>
+                
+                <h3>Mejoras sobre RADIUS</h3>
+                <ul>
+                    <li>Protocolo basado en TCP o SCTP (más fiable)</li>
+                    <li>Soporte nativo para IPSec y TLS</li>
+                    <li>Mejor manejo de errores y notificaciones</li>
+                    <li>Soporte para roaming entre operadores</li>
+                    <li>Extensible mediante aplicaciones</li>
+                    <li>Soporte para peer-to-peer (no solo cliente-servidor)</li>
+                </ul>
+                
+                <h3>Aplicaciones Diameter</h3>
+                <ul>
+                    <li><strong>Diameter Base Protocol:</strong> RFC 6733</li>
+                    <li><strong>NASREQ:</strong> Network Access Server Requirements (sucesor de RADIUS)</li>
+                    <li><strong>Mobile IP:</strong> Autenticación para movilidad IP</li>
+                    <li><strong>EAP:</strong> Extensible Authentication Protocol</li>
+                    <li><strong>Credit Control:</strong> Facturación en tiempo real</li>
+                </ul>
+                
+                <h3>Uso en Redes Móviles</h3>
+                <p>Diameter es fundamental en arquitecturas 4G LTE y 5G:</p>
+                <pre><code>Interfaces Diameter en LTE:
+- S6a: Entre MME y HSS (gestión de suscriptores)
+- S9: Entre redes para roaming
+- Gx: Control de políticas
+- Gy: Facturación online</code></pre>
+            </section>
+
+            <section id="implementacion">
+                <h2>Implementación de Servicios AAA</h2>
+                
+                <h3>Arquitectura Típica</h3>
+                <pre><code>┌─────────────┐       ┌──────────────┐       ┌────────────────┐
+│  Clientes   │       │ Servidor NAS │       │  Servidor AAA  │
+│  (Usuarios) │ ───▶  │   (Network   │ ───▶  │  (FreeRADIUS,  │
+│             │       │    Access    │       │   Cisco ISE,   │
+└─────────────┘       │   Server)    │       │   etc.)        │
+                      └──────────────┘       └────────────────┘
+                                                      │
+                                                      ▼
+                                              ┌────────────────┐
+                                              │  Backend de    │
+                                              │  Identidades   │
+                                              │ (LDAP, AD, SQL)│
+                                              └────────────────┘</code></pre>
+                
+                <h3>Componentes Principales</h3>
+                
+                <h4>1. Servidor AAA</h4>
+                <p>Centraliza las políticas de autenticación, autorización y auditoría.</p>
+                <ul>
+                    <li><strong>FreeRADIUS:</strong> Implementación open source más popular</li>
+                    <li><strong>Cisco ISE:</strong> Solución empresarial completa</li>
+                    <li><strong>Microsoft NPS:</strong> Network Policy Server (integrado en Windows Server)</li>
+                    <li><strong>ClearPass:</strong> Solución de Aruba Networks</li>
+                </ul>
+                
+                <h4>2. NAS (Network Access Server)</h4>
+                <p>Dispositivo que solicita autenticación al servidor AAA en nombre del cliente.</p>
+                <ul>
+                    <li>Access Points (WiFi)</li>
+                    <li>Switches (802.1X)</li>
+                    <li>VPN Gateways</li>
+                    <li>Controladores de acceso a red</li>
+                </ul>
+                
+                <h4>3. Backend de Identidades</h4>
+                <p>Almacena las credenciales y atributos de los usuarios.</p>
+                <ul>
+                    <li>Active Directory</li>
+                    <li>LDAP</li>
+                    <li>SQL Database</li>
+                    <li>Archivos planos</li>
+                </ul>
+            </section>
+
+            <section id="seguridad">
+                <h2>Consideraciones de Seguridad</h2>
+                
+                <h3>Mejores Prácticas</h3>
+                
+                <h4>1. Secretos Compartidos Fuertes</h4>
+                <pre><code># Malo:
+shared secret = "secret"
+
+# Bueno:
+shared secret = "X7#mK9$pL2@qR5&nT8^wY3!vZ6*hJ4"</code></pre>
+                
+                <h4>2. Cifrado de Comunicaciones</h4>
+                <ul>
+                    <li>Usar RadSec (RADIUS over TLS) en lugar de RADIUS estándar</li>
+                    <li>Implementar IPSec entre servidor AAA y NAS</li>
+                    <li>Para TACACS+, asegurar que el cifrado esté habilitado</li>
+                </ul>
+                
+                <h4>3. Segregación de Red</h4>
+                <p>El tráfico AAA debe estar en una VLAN dedicada y protegida.</p>
+                
+                <h4>4. Redundancia y Alta Disponibilidad</h4>
+                <ul>
+                    <li>Múltiples servidores AAA (primario y secundario)</li>
+                    <li>Balanceo de carga</li>
+                    <li>Replicación de configuración y datos</li>
+                </ul>
+                
+                <h4>5. Monitoreo y Alertas</h4>
+                <ul>
+                    <li>Monitorear intentos de autenticación fallidos</li>
+                    <li>Alertas por patrones anómalos</li>
+                    <li>Auditoría regular de logs</li>
+                </ul>
+                
+                <h4>6. Políticas de Contraseñas</h4>
+                <ul>
+                    <li>Complejidad mínima</li>
+                    <li>Rotación periódica</li>
+                    <li>Prevención de reutilización</li>
+                    <li>Bloqueo tras intentos fallidos</li>
+                </ul>
+                
+                <div class="warning">
+                    <strong>Vulnerabilidades Comunes:</strong>
+                    <ul>
+                        <li>Secretos compartidos débiles o predeterminados</li>
+                        <li>Comunicaciones sin cifrar</li>
+                        <li>Falta de actualización de software</li>
+                        <li>Configuraciones inseguras por defecto</li>
+                        <li>Logs insuficientes para auditoría</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="casos">
+                <h2>Casos de Uso Empresariales</h2>
+                
+                <h3>1. Acceso WiFi Corporativo (802.1X)</h3>
+                <p>Implementación de autenticación robusta para redes inalámbricas empresariales.</p>
+                <pre><code>Componentes:
+- Access Points compatibles con 802.1X
+- FreeRADIUS o Cisco ISE
+- Active Directory para autenticación
+- Certificados para EAP-TLS o EAP-PEAP
+
+Beneficios:
+- Autenticación por usuario (no por contraseña compartida)
+- Cifrado individual por usuario
+- Asignación dinámica de VLAN según grupo
+- Auditoría de accesos</code></pre>
+                
+                <h3>2. Control de Acceso a Dispositivos de Red</h3>
+                <p>Autenticación y autorización de administradores para switches, routers y firewalls.</p>
+                <pre><code>Implementación con TACACS+:
+- Autenticación centralizada de administradores
+- Autorización por comandos según rol
+- Auditoría completa de comandos ejecutados
+- Facilita cumplimiento de regulaciones
+
+Ejemplo de política:
+- Admin completo: Todos los comandos
+- Operador de red: Solo comandos show y ping
+- Operador de monitoreo: Solo comandos show</code></pre>
+                
+                <h3>3. VPN de Acceso Remoto</h3>
+                <p>Autenticación de usuarios remotos que acceden a la red corporativa.</p>
+                <pre><code>Configuración:
+- VPN Gateway (Cisco ASA, OpenVPN, etc.)
+- RADIUS para autenticación
+- MFA (segundo factor vía SMS o app)
+- Asignación de permisos según grupo
+
+Ventajas:
+- Autenticación centralizada
+- Soporte para MFA
+- Auditoría de accesos remotos
+- Desactivación centralizada de acceso</code></pre>
+                
+                <h3>4. Network Access Control (NAC)</h3>
+                <p>Control de admisión a la red basado en postura de seguridad del dispositivo.</p>
+                <pre><code>Flujo NAC:
+1. Dispositivo se conecta a la red
+2. NAS solicita autenticación (802.1X)
+3. Servidor AAA verifica identidad y postura
+4. Si cumple políticas: Acceso completo
+5. Si no cumple: Red de cuarentena
+6. Remediation: Actualizaciones/parches
+7. Re-evaluación y acceso completo
+
+Validaciones típicas:
+- Antivirus actualizado
+- Firewall habilitado
+- Sistema operativo parcheado
+- Software corporativo instalado</code></pre>
+                
+                <h3>5. Acceso a Servicios Cloud</h3>
+                <p>Integración con servicios SaaS mediante federación de identidades.</p>
+                <pre><code>Arquitectura:
+RADIUS/LDAP ──▶ IdP (Identity Provider) ──▶ SaaS Apps
+                (SAML, OAuth)
+
+Beneficios:
+- Single Sign-On (SSO)
+- Aprovisionamiento automatizado
+- Des-aprovisionamiento al terminar empleo
+- Auditoría centralizada de accesos</code></pre>
+            </section>
+
+            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #e1e4e8;">
+                <h3>Referencias y Recursos Adicionales</h3>
+                <ul>
+                    <li><a href="https://tools.ietf.org/html/rfc2865" target="_blank">RFC 2865 - Remote Authentication Dial In User Service (RADIUS)</a></li>
+                    <li><a href="https://tools.ietf.org/html/rfc6733" target="_blank">RFC 6733 - Diameter Base Protocol</a></li>
+                    <li><a href="https://freeradius.org/" target="_blank">FreeRADIUS Official Site</a></li>
+                    <li><a href="https://www.cisco.com/c/en/us/support/docs/security-vpn/remote-authentication-dial-user-service-radius/13838-10.html" target="_blank">Cisco TACACS+ Documentation</a></li>
+                </ul>
+                
+                <p style="margin-top: 30px;">
+                    <a href="index.html" class="back-link">← Volver al índice principal</a>
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Scroll to section
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Update active link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
